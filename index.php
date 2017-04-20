@@ -44,9 +44,9 @@ echo "&lt;img class='ezavatar' src='$avatar' style='display: block;width: 80px;h
             <span class="ezavatar" style="background-color: #b1dd59;">嗨</span>
             </div>
             <div id="fields">
-<input type="text" id="author" name="author" maxlength="12" value="" size="30" aria-required="true" required="required" placeholder="嗨" oninput="fun(this)" onpropertychange="fun()">
-<input type="email" id="mail" name="mail" value="" size="30" aria-describedby="email-notes" aria-required="true" required="required" placeholder="admin@ryongyon.com" oninput="fun()" onpropertychange="fun(this)">
-<button type="button" class="btn" id="btn1" onclick="happy()"  value="btn1">提交评论</button> 
+<input type="text" id="author" name="author" maxlength="12" value="" size="30" aria-required="true" required="required" placeholder="嗨" oninput="fun()">
+<input type="email" id="email" name="email" value="" size="30" aria-describedby="email-notes" aria-required="true" required="required" placeholder="admin@ryongyon.com" oninput="fun()">
+<button type="button" class="btn" id="btn1" onclick="happy()" value="btn1">提交评论</button> 
             </div>
             </div>
             
@@ -113,53 +113,43 @@ echo "&lt;img class='ezavatar' src='$avatar' style='display: block;width: 80px;h
         
         <script type="text/javascript" language="javascript">
         var xmlHttp;    
-        function createXMLHttpRequest(){   
-            //检查浏览器是否支持 XMLHttpRequest 对象  
-            if(window.ActiveXObject){    
-                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");    
-            }    
-            else if(window.XMLHttpRequest){    
-                xmlHttp = new XMLHttpRequest();    
-            }    
-        }
-        //生成演示头像-AJAX
+   
         function fun(){    
-            createXMLHttpRequest();    
-            var url="ajax/server.php";
+            xmlHttp = new XMLHttpRequest();
+            var url="/ez-avatar/ajax/server.php";
             var author=document.getElementById("author").value;
-            var mail=document.getElementById("mail").value;
+            var email=document.getElementById("email").value;
             if(author == ''){author = '嗨'}
             xmlHttp.open("POST",url,true);   
             xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  
             xmlHttp.onreadystatechange = callback;    
-            xmlHttp.send("mail=" + mail + "&author=" + author);
+            xmlHttp.send("email=" + email + "&author=" + author);
         }    
         function callback(){    
-            if(xmlHttp.readyState == 4){    
-                if(xmlHttp.status == 200){
+            if(xmlHttp.readyState == 4 && xmlHttp.status == 200){
                     document.getElementById("avatar"). innerHTML = xmlHttp.responseText;
-                }    
             }
         }
         
         //提交评论-AJAX
-        function happy(){    
-            createXMLHttpRequest();    
-            var url="ajax/comments.php";
-            var mail=document.getElementById("mail").value;
+        function happy(){
+            var url="/ez-avatar/ajax/comments.php";
+            var email=document.getElementById("email").value;
             var author=document.getElementById("author").value;
             var text='Hello, world!';
-            if(author == ''){author = '嗨'}
+            if(email && author !== ''){
+            xmlHttp = new XMLHttpRequest();
+            //if(author == ''){author = '嗨'}
             xmlHttp.open("POST",url,true);   
             xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  
             xmlHttp.onreadystatechange = ctcallback;    
-            xmlHttp.send("email=" + mail + "&author=" + author + "&text=" + text);
-        }    
+            xmlHttp.send("email=" + email + "&author=" + author + "&text=" + text);
+        }else{
+            alert('表单不允许为空');
+        } }  
         function ctcallback(){    
-            if(xmlHttp.readyState == 4){    
-                if(xmlHttp.status == 200){
+            if(xmlHttp.readyState == 4 && xmlHttp.status == 200){    
                     window.location.reload(); 
-                }    
             }
         }
         </script>

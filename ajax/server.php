@@ -1,7 +1,7 @@
 <?php
-    $hash = md5(strtolower($_POST['mail']));
+    $hash = md5(strtolower($_POST['email']));
     $avatar = 'https://cdn.v2ex.com/gravatar/' . $hash . '?s=80&r=X&d=404';
-    $color = '#' . mb_substr( md5(strtolower($_POST['mail'])), 0, 6 ,"UTF8");
+    $color = '#' . mb_substr( md5(strtolower($_POST['email'])), 0, 6 ,"UTF8");
     $author = mb_substr( $_POST['author'], 0, 1 ,"UTF8");
     $headers = @get_headers($avatar);
     if (!preg_match("|200|", $headers[0])) {
