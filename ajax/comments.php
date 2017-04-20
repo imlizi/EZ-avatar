@@ -4,7 +4,7 @@ require '../lib/conn.inc.php';//引入配置文件
 $link = mysql_connect(HOST,NAME,VALUE) or die(mysql_error());  
 mysql_select_db(DATA) or die(mysql_error());  
 $time = date("Y-m-d H:i:s");
-@mysql_query("INSERT INTO `comments` (`email`, `author`, `ip`, `time`, `text`) VALUES ('".$_POST['email']."', '".$_POST['author']."', '".$_SERVER["REMOTE_ADDR"]."', '".$time."' , '".$_POST['text']."');");     //执行SQL命令
+@mysql_query("INSERT INTO `comments` (`email`, `author`, `ip`, `time`, `text`) VALUES ('".mysql_real_escape_string($_POST['email'])."', '".mysql_real_escape_string($_POST['author'])."', '".$_SERVER["REMOTE_ADDR"]."', '".$time."' , '".mysql_real_escape_string($_POST['text'])."');");     //执行SQL命令
 mysql_free_result($result);  
 mysql_close($link);  
 ?>
