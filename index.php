@@ -93,9 +93,9 @@ echo "&lt;img class='ezavatar' src='$avatar' style='display: block;width: 80px;h
     for($i=1;$i<=$pages;$i++){   //循环显示，每个链接指定curPage属性为其指向的页数就可以了  
          
       if($i == $curPage){
-            echo "<li class='current'><a href='/ez-avatar/index.php?curPage=$i'>$i</a></li>";  }
+            echo "<li class='current'><a href='/index.php?curPage=$i'>$i</a></li>";  }
         else  {
-            echo "<li><a href='/ez-avatar/index.php?curPage=$i'>$i</a></li>"; }
+            echo "<li><a href='/index.php?curPage=$i'>$i</a></li>"; }
     }  
  
     echo "</div>";  
@@ -116,7 +116,7 @@ echo "&lt;img class='ezavatar' src='$avatar' style='display: block;width: 80px;h
    
         function fun(){    
             xmlHttp = new XMLHttpRequest();
-            var url="/ez-avatar/ajax/server.php";
+            var url="/ajax/server.php";
             var author=document.getElementById("author").value;
             var email=document.getElementById("email").value;
             if(author == ''){author = '嗨'}
@@ -133,7 +133,7 @@ echo "&lt;img class='ezavatar' src='$avatar' style='display: block;width: 80px;h
         
         //提交评论-AJAX
         function happy(){
-            var url="/ez-avatar/ajax/comments.php";
+            var url="/ajax/comments.php";
             var email=document.getElementById("email").value;
             var author=document.getElementById("author").value;
             var text='Hello, world!';
