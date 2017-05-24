@@ -4,4 +4,7 @@
 
 ## Demo -- [前往演示页面](https://www.ryongyon.com/ez-avatar "前往演示页面")
 [![DEMO](https://raw.githubusercontent.com/Ryongyon/EZ-avatar/master/screenshot2.png "DEMO")](https://www.ryongyon.com/ez-avatar "DEMO2")
+
+------------
+
 [![DEMO](https://raw.githubusercontent.com/Ryongyon/EZ-avatar/master/screenshot.png "DEMO")](https://www.ryongyon.com/ez-avatar "DEMO")
